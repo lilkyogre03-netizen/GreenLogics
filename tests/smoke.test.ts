@@ -18,7 +18,7 @@ describe('Fase 1 Smoke Test — Spesifikasi Dasar Model Boolean', () => {
     expect(pump?.simplifiedHint).toBe('K ∧ A');
   });
 
-  it('mendeteksi constraint fisik P dan D true bersamaan sebagai kondisi don\'t-care', () => {
+  it("mendeteksi constraint fisik P dan D true bersamaan sebagai kondisi don't-care", () => {
     expect(
       isDontCareCondition({
         P: true,

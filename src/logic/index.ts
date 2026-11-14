@@ -9,12 +9,7 @@ export type SensorVariable = 'P' | 'D' | 'K' | 'G' | 'A' | 'M';
 
 /** Identitas aktuator (mesin output) pada rumah kaca */
 export type ActuatorId =
-  | 'waterPump'
-  | 'fan'
-  | 'roofVent'
-  | 'heater'
-  | 'growLight'
-  | 'alarm';
+  'waterPump' | 'fan' | 'roofVent' | 'heater' | 'growLight' | 'alarm';
 
 /** Metadata sensor untuk menjelaskan arti tiap variabel Boolean */
 export interface SensorDefinition {
@@ -33,12 +28,36 @@ export interface ActuatorDefinition {
 
 /** Daftar 6 variabel sensor sesuai spesifikasi model Boolean default */
 export const SENSOR_DEFINITIONS: readonly SensorDefinition[] = [
-  { variable: 'P', label: 'Suhu Panas (P)', description: 'Suhu melewati batas atas' },
-  { variable: 'D', label: 'Suhu Dingin (D)', description: 'Suhu di bawah batas bawah' },
-  { variable: 'K', label: 'Tanah Kering (K)', description: 'Kelembapan tanah rendah' },
-  { variable: 'G', label: 'Cahaya Kurang (G)', description: 'Intensitas cahaya rendah' },
-  { variable: 'A', label: 'Air Tersedia (A)', description: 'Tangki air tidak kosong' },
-  { variable: 'M', label: 'Malam Hari (M)', description: 'Kondisi waktu malam' },
+  {
+    variable: 'P',
+    label: 'Suhu Panas (P)',
+    description: 'Suhu melewati batas atas',
+  },
+  {
+    variable: 'D',
+    label: 'Suhu Dingin (D)',
+    description: 'Suhu di bawah batas bawah',
+  },
+  {
+    variable: 'K',
+    label: 'Tanah Kering (K)',
+    description: 'Kelembapan tanah rendah',
+  },
+  {
+    variable: 'G',
+    label: 'Cahaya Kurang (G)',
+    description: 'Intensitas cahaya rendah',
+  },
+  {
+    variable: 'A',
+    label: 'Air Tersedia (A)',
+    description: 'Tangki air tidak kosong',
+  },
+  {
+    variable: 'M',
+    label: 'Malam Hari (M)',
+    description: 'Kondisi waktu malam',
+  },
 ];
 
 /**
