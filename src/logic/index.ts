@@ -4,27 +4,16 @@
  * supaya seluruh fungsi logika dapat diuji secara terisolasi lewat unit test.
  */
 
-/** Kode variabel sensor input pada sistem rumah kaca */
-export type SensorVariable = 'P' | 'D' | 'K' | 'G' | 'A' | 'M';
+import type { ActuatorDefinition, SensorDefinition } from './types';
 
-/** Identitas aktuator (mesin output) pada rumah kaca */
-export type ActuatorId =
-  'waterPump' | 'fan' | 'roofVent' | 'heater' | 'growLight' | 'alarm';
-
-/** Metadata sensor untuk menjelaskan arti tiap variabel Boolean */
-export interface SensorDefinition {
-  readonly variable: SensorVariable;
-  readonly label: string;
-  readonly description: string;
-}
-
-/** Definisi ekspresi awal dan bentuk sederhana tiap aktuator */
-export interface ActuatorDefinition {
-  readonly id: ActuatorId;
-  readonly label: string;
-  readonly defaultExpression: string;
-  readonly simplifiedHint: string;
-}
+export * from './types';
+export * from './parser';
+export * from './evaluator';
+export * from './truthTable';
+export * from './quineMcCluskey';
+export * from './booleanLaws';
+export * from './equivalence';
+export * from './gateGraph';
 
 /** Daftar 6 variabel sensor sesuai spesifikasi model Boolean default */
 export const SENSOR_DEFINITIONS: readonly SensorDefinition[] = [
@@ -102,14 +91,3 @@ export const DEFAULT_ACTUATOR_DEFINITIONS: readonly ActuatorDefinition[] = [
     simplifiedHint: '¬A ∧ K',
   },
 ];
-
-/**
- * Mengecek apakah kombinasi nilai sensor melanggar constraint fisik.
- * Suhu tidak mungkin panas (P = true) sekaligus dingin (D = true).
- * Kombinasi P ∧ D diperlakukan sebagai kondisi don't-care (X) di tabel kebenaran & K-map.
- */
-export function isDontCareCondition(
-  values: Readonly<Record<SensorVariable, boolean>>,
-): boolean {
-  return values.P && values.D;
-}
